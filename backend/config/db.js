@@ -1,7 +1,12 @@
 import mysql from 'mysql2/promise';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: "../.env" }); // 載入 .env 檔案的變數
+dotenv.config({ path: '../../.env' }); // 載入 .env 檔案的變數
+
+// ✅ 錯誤提示
+if (!process.env.DB_USER || !process.env.DB_PASSWORD || !process.env.DB_NAME) {
+  console.error('❌ 請確認 .env 中是否正確設定 DB_USER、DB_PASSWORD、DB_NAME');
+}
 
 console.log("DB_USER:", process.env.DB_USER);
 console.log("DB_PASSWORD:", process.env.DB_PASSWORD);

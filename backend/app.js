@@ -4,8 +4,11 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 
 dotenv.config();
+import authRoutes from './routes/auth.js';
+
 
 const app = express();
+app.use('/api', authRoutes);
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
