@@ -31,7 +31,8 @@ CREATE TABLE `announcement` (
   PRIMARY KEY (`announcement_id`),
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +56,8 @@ CREATE TABLE `claim_request` (
   CONSTRAINT `claim_request_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `claim_request_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
   CONSTRAINT `claim_request_ibfk_3` FOREIGN KEY (`approved_by`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -76,7 +78,8 @@ CREATE TABLE `comment` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
   CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +96,8 @@ CREATE TABLE `image` (
   PRIMARY KEY (`image_id`),
   KEY `item_id` (`item_id`),
   CONSTRAINT `image_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +116,8 @@ CREATE TABLE `item_tag_mapping` (
   KEY `tag_id` (`tag_id`),
   CONSTRAINT `item_tag_mapping_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
   CONSTRAINT `item_tag_mapping_ibfk_2` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`tag_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +146,8 @@ CREATE TABLE `items` (
   CONSTRAINT `items_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `items_ibfk_2` FOREIGN KEY (`storage_location_id`) REFERENCES `storage_location` (`storage_location_id`),
   CONSTRAINT `items_ibfk_3` FOREIGN KEY (`claimed_by`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +172,8 @@ CREATE TABLE `report` (
   CONSTRAINT `report_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `report_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
   CONSTRAINT `report_ibfk_3` FOREIGN KEY (`processed_by`) REFERENCES `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +188,8 @@ CREATE TABLE `storage_location` (
   `location_name` varchar(100) NOT NULL,
   `description` text,
   PRIMARY KEY (`storage_location_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +204,8 @@ CREATE TABLE `tag` (
   `tag_name` varchar(50) NOT NULL,
   PRIMARY KEY (`tag_id`),
   UNIQUE KEY `tag_name` (`tag_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +226,8 @@ CREATE TABLE `user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `unique_username` (`username`),
   UNIQUE KEY `unique_email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

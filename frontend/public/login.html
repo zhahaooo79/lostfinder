@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>使用者登入</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    label { display: block; margin: .5rem 0 0.2rem; }
+    input { padding: .5rem; width: 100%; max-width: 300px; }
+    button { margin-top: 1rem; padding: .5rem 1rem; }
+    #error { color: red; margin-top: .5rem; }
+  </style>
+</head>
+<body>
+  <h1>使用者登入</h1>
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input id="username" name="username" required />
+
+    <label for="password">Password:</label>
+    <input id="password" name="password" type="password" required />
+
+    <button type="submit">登入</button>
+  </form>
+  <div id="error"></div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errDiv = document.getElementById('error');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      errDiv.textContent = '';
+      const username = form.username.value.trim();
+      const password = form.password.value;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          errDiv.textContent = data.error || '登入失敗';
+          return;
+        }
+
+        // 根據身分導向不同頁面
+        if (data.user.role === 'admin') {
+          location.href = '/admin_dashboard.html';
+        } else {
+          location.href = '/user_dashboard.html';
+        }
+      } catch (err) {
+        errDiv.textContent = '網路或伺服器錯誤，請稍後再試';
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

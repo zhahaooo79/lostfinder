@@ -1,0 +1,44 @@
+<!-- public/register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>註冊 - LostFinder</title>
+</head>
+<body>
+  <h1>註冊帳號</h1>
+  <form id="registerForm">
+    <label>Username: <input name="username" required /></label><br>
+    <label>Password: <input name="password" type="password" required /></label><br>
+    <button type="submit">送出</button>
+  </form>
+  <p id="msg"></p>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        username: form.username.value,
+        password: form.password.value
+      };
+      try {
+        const res = await fetch('http://localhost:3000/api/auth/signup', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(data)
+        });
+        const json = await res.json();
+        if (res.ok) {
+          // 註冊成功，導到登入頁
+          location.href = 'login.html';
+        } else {
+          document.getElementById('msg').textContent = json.message || JSON.stringify(json);
+        }
+      } catch (err) {
+        document.getElementById('msg').textContent = 'err';
+      }
+    });
+  </script>
+</body>
+</html>
