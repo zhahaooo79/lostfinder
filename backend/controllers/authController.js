@@ -1,4 +1,4 @@
-const db = require('../models/db');
+const db = require('../config/db');
 
 exports.signup = (req, res) => {
   const { username, password, email, phone } = req.body;
